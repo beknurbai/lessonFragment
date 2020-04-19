@@ -18,7 +18,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class CalculatorFragment extends Fragment {
-    TextView resultField;
+    TextView resultField,numberField,operation;
     Button button1, button2, button0, button3, button4, button5, button6, button7, button8, button9, ravno, tochka, divide, multiply, plus, minus;
     public CalculatorFragment() {
         // Required empty public constructor
@@ -41,7 +41,11 @@ public class CalculatorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final MainActivity listener = (MainActivity) getActivity();
         resultField = view.findViewById(R.id.resultField);
+        numberField = view.findViewById(R.id.numberField);
+        operation = view.findViewById(R.id.operationField);
         ((MainActivity) getActivity()).resultField = resultField;
+        ((MainActivity) getActivity()).numberField = numberField;
+        ((MainActivity) getActivity()).operationField = operation;
         button0=view.findViewById(R.id.zero);
         button1=view.findViewById(R.id.button1);
         button2=view.findViewById(R.id.button2);

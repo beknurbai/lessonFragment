@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Double operand = null;
     String lastOperation = "=";
     CalculatorFragment calculator;
+   boolean isResult=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         resultField = (TextView) findViewById(R.id.resultField);
         numberField = (TextView) findViewById(R.id.numberField);
         operationField = (TextView) findViewById(R.id.operationField);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        calculator = new CalculatorFragment();
+        transaction.replace(R.id.container, calculator);
+        transaction.commit();
 
     }
 
@@ -61,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = (Button) view;
         numberField.append(button.getText());
-
         if (lastOperation.equals("=") && operand != null) {
             operand = null;
         }
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     // обработка нажатия на кнопку операции
     public void onOperationClick(View view) {
+
         Button button = (Button) view;
         String op = button.getText().toString();
         String number = numberField.getText().toString();
@@ -148,14 +154,15 @@ public class MainActivity extends AppCompatActivity {
         ShareFragment share = new ShareFragment();
         transaction.replace(R.id.container, share);
         transaction.commit();
-    }
+}
 
     public void onCalculator(View view) {
         calculator();
     }
 
     public void onSh(View view) {
-        share();
-    }
+
+        share();}
+    
 }
 
