@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -23,10 +24,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         resultField = (TextView) findViewById(R.id.resultField);
         numberField = (TextView) findViewById(R.id.numberField);
         operationField = (TextView) findViewById(R.id.operationField);
-        
+
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("olol","onStart");
+        super.onStart();
     }
 
     // сохранение состояния
@@ -61,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     // обработка нажатия на кнопку операции
     public void onOperationClick(View view) {
-
         Button button = (Button) view;
         String op = button.getText().toString();
         String number = numberField.getText().toString();
@@ -131,18 +138,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         CalculatorFragment calculator = new CalculatorFragment();
-        transaction.replace(R.id.calculator_fragment, calculator);
+        transaction.replace(R.id.container, calculator);
         transaction.commit();
     }
 
     public void share() {
-        if (false){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         ShareFragment share = new ShareFragment();
-        transaction.replace(R.id.calculator_fragment, share);
+        transaction.replace(R.id.container, share);
         transaction.commit();
-    }}
+    }
 
     public void onCalculator(View view) {
         calculator();

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,12 @@ public class CalculatorFragment extends Fragment {
 
     }
 
+    private void onAttach() {
+        Log.d("olol","onAttach");
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        onAttach();
         super.onViewCreated(view, savedInstanceState);
         final MainActivity listener = (MainActivity) getActivity();
         resultField = view.findViewById(R.id.resultField);

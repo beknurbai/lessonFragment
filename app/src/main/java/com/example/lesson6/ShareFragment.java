@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +28,18 @@ Button share;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_share, container, false);
+    }
+
+    private void onAttach() {
+        Log.d("olol","onAttach");
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         result=view.findViewById(R.id.result);
+        onAttach();
         share=view.findViewById(R.id.share);
         final MainActivity mainActivity = (MainActivity) getActivity();
         result.setText(mainActivity.operand.toString());
